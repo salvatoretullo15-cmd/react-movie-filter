@@ -1,17 +1,31 @@
 import { useState } from 'react'
-import AppHeader from './components/AppHeader'
-import AppMain from './components/AppMain'
-import AppFooter from './components/AppFooter'
-import './App.css'
+const movies =
+ [
+   { title: 'Inception', genre: 'Fantascienza' },
+   { title: 'Il Padrino', genre: 'Thriller' },
+   { title: 'Titanic', genre: 'Romantico' },
+   { title: 'Batman', genre: 'Azione' },
+   { title: 'Interstellar', genre: 'Fantascienza' },
+   { title: 'Pulp Fiction', genre: 'Thriller' },
+ ]
 
-function App() {
+function App(){
   
+  const [filteredGenre , setFilteredGenre] = useState ("")
 
   return (
     <>
-      <AppHeader />
-      <AppMain />
-      <AppFooter />
+      <div className="container">
+        <h1>CHE TIPO SEI STASERA</h1>
+        <select className="form-select" onChange={(e)=>setFilteredGenre(e.target.value)} value={filteredGenre}>
+          <option value="">GENERI</option>
+          {movies.map((movie,genre)=>(
+            <option key={genre} value={movie.genre}>
+              {movie.genre}
+            </option>
+          ))}
+        </select>
+      </div>
     </>
   )
 }
